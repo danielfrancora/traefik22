@@ -1,0 +1,23 @@
+---
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: traefik-daemon-set
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: traefik.mycompany
+      http:
+        paths:
+          - backend:
+              service:
+                name: traefik-daemon-set
+                port: 
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+  - hosts:
+    - traefik.mycompany
+    secretName: mstechgodaddy              
